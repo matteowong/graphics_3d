@@ -33,7 +33,10 @@ void add_box( struct matrix * edges,
   add_edge(edges,x+width,y,z-depth,x+width,y-height,z-depth);
   add_edge(edges,x+width,y-height,z+depth,x+width,y-height,z);
   add_edge(edges,x+width,y-height,z+depth,x,y-height,z-depth);
-  add_edge(x,y-height,z-depth,x,y,z-depth);
+  add_edge(edges,x,y-height,z-depth,x,y,z-depth);
+  add_edge(edges,x,y-height,z-depth,x,y-height,z);
+  add_edge(edges,x-width,y-height,z,x,y-height,z);
+  add_edge(edges,x-width,y-height,z,x-width,y,z);
 
   
 }
@@ -119,7 +122,7 @@ struct matrix * generate_sphere(double cx, double cy, double cz,
 void add_torus( struct matrix * edges, 
                 double cx, double cy, double cz,
                 double r1, double r2, int step ) {
-  struct matrix * points=generate_sphere(cx,cy,cz,r2,r2,step);
+  struct matrix * points=generate_torus(cx,cy,cz,r2,r2,step);
   int i=0;
   while (i<points->lastcol){
     add_edge(edges,points->m[0][i],points->m[1][i],points->m[2][i],points->m[0][i]+1,points->m[1][i]+1,points->m[2][i]+1);
@@ -152,7 +155,7 @@ struct matrix * generate_torus( double cx, double cy, double cz,
     while (j<step) {
       int theta=(double)j/step;
       x=cos(fi*2*M_PI)*(r1*cos(theta*2*M_PI)+r2)+cx;
-      y=r*sin(theta*2*M_PI)+cy;
+      y=r1*sin(theta*2*M_PI)+cy;
       z=-sin(fi*2*M_PI)*(r1*cos(theta*2*M_PI)+r2)*cz;
       add_point(points,x,y,z);
       j++;
