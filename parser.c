@@ -92,7 +92,8 @@ void parse_file ( char * filename,
     double zvals[4];
     double box_d[3];
     struct matrix *tmp;
-    double r, r2;
+    double r;
+    double bigR;
     double theta;
     char axis;
     int type;
@@ -222,18 +223,23 @@ void parse_file ( char * filename,
       fgets(line, sizeof(line), f);
       *strchr(line, '\n') = 0;
       sscanf(line,"%lf %lf %lf %lf",xvals,yvals,zvals,&r);
+      
       add_sphere(edges,xvals[0],yvals[0],zvals[0],r,step);
     }//end sphere
 
     else if (strncmp(line, "torus", strlen(line)) == 0) {
       fgets(line, sizeof(line), f);
       *strchr(line, '\n') = 0;
-      sscanf(line,"%lf %lf %lf %lf %lf",xvals,yvals,zvals,&r,&r2);
-      add_torus(edges,xvals[0],yvals[0],zvals[0],r,r2,step);
+      sscanf(line,"%lf %lf %lf %lf %lf",xvals,yvals,zvals,&r,&bigR);
+      printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
+      
+      add_torus(edges,xvals[0],yvals[0],zvals[0],r,bigR,step);
+      printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
     } //end torus
 
     else if (strncmp(line, "clear", strlen(line)) == 0){
       edges->lastcol=0;
+      //printf("clear\n");
     }//end clear
   }
 }
