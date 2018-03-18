@@ -231,10 +231,10 @@ void parse_file ( char * filename,
       fgets(line, sizeof(line), f);
       *strchr(line, '\n') = 0;
       sscanf(line,"%lf %lf %lf %lf %lf",xvals,yvals,zvals,&r,&bigR);
-      printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
+      //printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
       
       add_torus(edges,xvals[0],yvals[0],zvals[0],r,bigR,step);
-      printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
+      //printf("torus: %lf %lf %lf %lf %lf\n",xvals[0],yvals[0],zvals[0],r,bigR);
     } //end torus
 
     else if (strncmp(line, "clear", strlen(line)) == 0){

@@ -1,0 +1,25 @@
+sphere
+0 0 0 150
+torus
+0 0 0 20 150
+torus
+0 0 0 20 200
+torus
+0 0 0 20 250
+display
+ident
+move
+320 200 0 
+apply
+display
+ident
+rotate
+x 20
+rotate 
+y 20
+rotate
+z 20
+apply
+display
+save
+saturn.png
